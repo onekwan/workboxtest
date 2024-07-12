@@ -5,6 +5,11 @@ if ('serviceWorker' in navigator) {
 
         window.$registration = registration;
 
+        // setInterval(() => {
+        //     console.log('interval update')
+        //     registration.update();
+        // });
+
         registration.onupdatefound = () => {
             console.log('새 서비스 워커 발견됨');
             const installingWorker = registration.installing;

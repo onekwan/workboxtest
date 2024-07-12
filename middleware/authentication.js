@@ -5,6 +5,8 @@ import {
 export default function ({ app, store, route, redirect}) {
     let token = store.getters['auth/getAccessToken'];
 
+
+
     if(!token){
         let loginPath = '/account/login';
         try{

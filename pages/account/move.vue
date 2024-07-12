@@ -1,8 +1,13 @@
 <script>
 // layout null로 설정
 
-if (window.$registration) {
-	 window.$registration.update();
+
+export default {
+	 layout:"empty",
+	 middleware : 'guest',
+	 mounted() {
+
+	 }
 }
 </script>
 

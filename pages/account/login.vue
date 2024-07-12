@@ -17,6 +17,7 @@ import { version } from '../../package.json';
 
 export default {
 	 layout: "auth",
+	 middleware : 'guest',
 	 data() {
 		  return {
 				user_id: "",
