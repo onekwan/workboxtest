@@ -138,7 +138,8 @@ export default {
                                               <h1 class="font-size-24 justify-content-center align-content-center" style="height: 50px">알바트로스 관리자 로그인</h1>
 														  <p>cd 잘되나 테스트~~~</p>
 														  <ol>
-																<li>배포 11:54 2024-07-12</li>
+																<li class="text-left">배포 11:54 2024-07-12<span style="color:red">실패</span></li>
+																<li class="text-left">배포 11:58 변경된 html</li>
 														  </ol>
                                         </div>
                                   </div>
