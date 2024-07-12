@@ -1,6 +1,13 @@
 <script>
 // layout null로 설정
 
+if ('serviceWorker' in navigator) {
+	 navigator.serviceWorker.register('/sw.js').then((registration) => {
+		  // 페이지가 로드될 때마다 업데이트 확인
+		  registration.update();
+	 });
+}
+
 
 </script>
 
