@@ -1,7 +1,7 @@
 <script setup>
 // layout null로 설정
 export default {
-	layout: "null",
+	layout: "empty",
 };
 
 </script>
