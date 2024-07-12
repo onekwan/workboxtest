@@ -136,12 +136,16 @@ export default {
                                   <div class="col-lg-12">
                                         <div class="text-center">
                                               <h1 class="font-size-24 justify-content-center align-content-center" style="height: 50px">알바트로스 관리자 로그인</h1>
+
+														  <nuxt-link to="/account/move">무브 페이지로 이동</nuxt-link>
+
 														  <p>cd 잘되나 테스트~~~</p>
 														  <ol>
 																<li class="text-left">배포 11:54 2024-07-12<span style="color:red">실패</span></li>
 																<li class="text-left">배포 11:58 변경된 html<span style="color:red">실패</span></li>
 																<li class="text-left">배포 12:02 urlPattern 변경</li>
-																<li class="text-left">배포 12:05 urlPattern 변경 된 것 테스트</li>
+																<li class="text-left">배포 12:05 urlPattern 변경 된 것 테스트<span style="color:red">실패</span></li>
+																<li class="text-left">배포 14:12 캐쉬 네임 버전</li>
 														  </ol>
                                         </div>
                                   </div>
