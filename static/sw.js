@@ -5,6 +5,7 @@
 const CACHE_NAME = `api-cache-${version}`;
 
 self.addEventListener('install', (event) => {
+  console.log('Service Worker installing.');
   self.skipWaiting();
 });
 
