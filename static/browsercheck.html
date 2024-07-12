@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <title>지원하지 않는 브라우저 입니다.</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <style>
+            div{text-align:center;position:absolute;top:50%;left:50%;margin-left:-275px;margin-top:-93px;}
+            @media  (max-width: 767px) {
+                  div{position: relative;top:0;left:0;margin-left: 0;margin-top: 130px}
+                  h2{font-size:20px}
+
+            }
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #fff;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            .container {
+                text-align: center;
+                background-color: #ffffff;
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                animation: fadeIn 1s ease;
+            }
+
+            h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            p {
+                font-size: 18px;
+                margin-bottom: 20px;
+                color: #555;
+            }
+
+            a {
+                text-decoration: none;
+                background-color: #0078d4;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 14px;
+                transition: background-color 0.3s ease;
+            }
+
+            a:hover {
+                background-color: #00549e;
+            }
+
+            @media (max-width: 767px) {
+                .container {
+                    margin-top: 30px;
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+      </style>
+      <script>
+
+          let isMobile = isMobileOrTablet();
+          let isIos = checkIos();
+          let isAndroid = checkAndroid();
+
+
+          function goDownload(){
+              let link = 'https://www.google.com/intl/ko/chrome/';
+              if(isMobile){
+                  if(isIos){
+                      link = 'https://apps.apple.com/kr/app/google-chrome/id535886823';
+                  }else if(isAndroid){
+                      link = 'https://play.google.com/store/apps/details?id=com.android.chrome&pli=1';
+                  }
+              }
+              window.open(link);
+
+              return false;
+          }
+
+          // function goChrome(){
+          //     // let urlParams = new URLSearchParams(window.location.search);
+          //     // let myParam = urlParams.get('path');
+          //
+          //     const url = window.location.href;
+          //     const regex = /path=(.*)/;
+          //     const match = url.match(regex);
+          //
+          //     if (match) {
+          //         const extractedValue = match[1];
+          //         let path = "googlechrome://"+extractedValue.replace('https://','');
+          //         window.location.href=path;
+          //
+          //     } else {
+          //         console.log("일치하는 값이 없습니다.");
+          //     }
+          //
+          //     return false;
+          // }
+
+          function isMobileOrTablet() {
+              // navigator 객체의 user agent 문자열에서 모바일 및 테블릿 기기 특징을 확인
+              const userAgent = navigator.userAgent;
+
+              // 정규 표현식을 사용하여 모바일 및 테블릿 기기 여부를 판단
+              const mobileOrTablet = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+
+              return mobileOrTablet;
+          }
+
+          function checkAndroid(){
+              if (/Android/.test(navigator.userAgent)) {
+                  // The user is accessing the site from a mobile device
+                  return true;
+              }else{
+                  return false;
+              }
+          }
+
+          function checkIos(){
+              if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                  // 아이폰 또는 아이패드 기기를 사용 중입니다.
+                  return true;
+              }else{
+                  return false;
+              }
+          }
+
+          function isKakaoTalk(){
+              return navigator.userAgent.indexOf("KAKAOTALK") > -1;
+          }
+
+      </script>
+</head>
+<body>
+      <div>
+            <h2>해당 브라우저는 지원 하지 않습니다.</h2>
+
+            <p>사용 가능 브라우저 : Microsoft Edge, chrome</p>
+            <p>아래 링크를 눌러 최신 기능을 지원하는 브라우저를 설치해 주시기 바랍니다.</p>
+            <br/>
+            <a id='btn_chromeDownload' onclick="goDownload()" href="#">크롬 다운로드 하러 가기</a>
+
+<!--            <br/>-->
+<!--            <br/>-->
+<!--            <br/>-->
+<!--            <a href="#" id="btn_goChrome" onclick="goChrome()">크롬 브라우저로 열기</a>-->
+      </div>
+
+</body>
+</html>

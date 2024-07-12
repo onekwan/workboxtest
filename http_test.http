@@ -1,0 +1,139 @@
+
+###
+# 2022-06-20 KPS dev 검지 테스트
+POST http://localhost:3758/submit-data
+Content-Type: application/json
+
+{
+  "ParkingLotUUID_Deployed": "20220208",
+  "Facility_ExternalID": "48563795479",
+  "FacilityKind": "lpr_carin",
+  "CarNumber": "10가80001",
+  "Gate": "close_mode",
+  "DateTime": "2022-06-20T11:37:09+09:00",
+  "Description": "",
+  "PassType": "kps_rule"
+}
+
+###
+# 2022-06-20 KPS dev 검지 테스트
+POST https://lpr-api-dev.kakaopark.net/facility/pass
+Content-Type: application/x-www-form-urlencoded
+kps-key: 5f63ba484698108201da5dc
+
+ParkingLotUUID_Deployed=20220208&Facility_ExternalID=48563795479&FacilityKind=lpr_carin&CarNumber=10%EA%B0%800001&Gate=close_mode&DateTime=2022-06-20T11%3A37%3A09%2B09%3A00&Description=&PassType=kps_rule
+
+
+###
+
+
+### 1. 토큰 발급
+# curl -v -X POST "https://auth-dev.kakaopark.net/oauth/token"
+#-d "grant_type=authorization_code"
+#-d "client_id=TXBSgRAMcp8TYViL8Kdk7JNp1AkRvyGL"
+#-d "client_secret=JiP0huGTHPvdnzD8YfeFOHOJUAXwjusJMUBvAjduzcAKhr0Uq11bObFJOh7RPh5f" \
+
+POST http://localhost:24765/kpsapi
+Content-Type: application/x-www-form-urlencoded
+kps-url: https://auth-dev.kakaopark.net/oauth/token
+#ws-url: wss://lpr-dev.kakaopark.net/cable
+#ws-url: ws://192.168.0.118:8080/cable
+ws-url: ws://localhost:8080
+
+grant_type=authorization_code&client_id=TXBSgRAMcp8TYViL8Kdk7JNp1AkRvyGL&client_secret=JiP0huGTHPvdnzD8YfeFOHOJUAXwjusJMUBvAjduzcAKhr0Uq11bObFJOh7RPh5f
+
+###
+
+
+### 2. 토큰 갱신
+# curl -v -X POST "https://auth-dev.kakaopark.net/oauth/token"
+#-d "grant_type=refresh_token"
+#-d "client_id=TXBSgRAMcp8TYViL8Kdk7JNp1AkRvyGL"
+#-d "client_secret=JiP0huGTHPvdnzD8YfeFOHOJUAXwjusJMUBvAjduzcAKhr0Uq11bObFJOh7RPh5f"
+#-d "refresh_token=IQL8rVS9E4J1S9RyzgXLs5eaBTHOS8Utu4GflPZjMMI" \
+POST http://localhost:24765/kpsapi
+#POST https://auth-dev.kakaopark.net/oauth/token
+Content-Type: application/x-www-form-urlencoded
+kps-url: https://auth-dev.kakaopark.net/oauth/token
+ws-url: ws://192.168.0.118:8080/cable
+
+grant_type=refresh_token&client_id=TXBSgRAMcp8TYViL8Kdk7JNp1AkRvyGL&client_secret=JiP0huGTHPvdnzD8YfeFOHOJUAXwjusJMUBvAjduzcAKhr0Uq11bObFJOh7RPh5f&refresh_token=eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2NDM2Mjc1NDh9.ITYqJan4AlQm9u8wpanjTMvGkD1CAIxA1sburkq8Bw-cpwzKKbO4xkSkDRuZxFFlk7qu3Y-jfBesnzR0igc00g
+
+###
+
+POST http://localhost:8882/facility/recognition
+Authorization: Bearer EYJHBGCI0IJIUZUXMIJ9
+Content-Type: application/x-www-form-urlencoded
+kps-key: EYJHBGCI0IJIUZUXMIJ9
+
+ParkingLotUUID_Deployed=10210117000052&Facility_ExternalID=0082-0001-0028-0001-0008-0010&FacilityKind=lpr_carin&CarNumber=10%EA%B0%800097&GateMode=close&DateTime=2022-08-24T11%3A16%3A56%2B09%3A00&PassType=kps_rule
+
+
+### 3. heartbeat
+# curl -v -X POST "https://lpr-api-dev.kakaopark.net/facility/ping"
+#-H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPT..."
+#-d "facilityUUID=331"
+#-d "datetime=2022-01-01T01:01:01" \
+POST http://localhost:24765/kpsapi
+authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImNQYXJraW5nTG90VVVJRCI6IjMiLCJleHAiOjE2NDMxOTc5NDB9.FnJPdfQayDKjT8IKFYxO1uYefbMIRd9eHPgOd78bywTpSTQak_8ClI5vC5ubioF-QNraCdPSZjlepQnfokWMbg
+Content-Type: application/x-www-form-urlencoded
+kps-url: https://lpr-api-dev.kakaopark.net/facility/ping
+#ws-url: ws://192.168.0.118:8080/cable
+ws-url: ws://localhost:8080/cable
+
+
+facilityUUID=331&datetime=2022-01-25T14:52:01
+
+###
+
+
+### 4.설비정보
+# curl -v -X POST "https://lpr-api-dev.kakaopark.net/facility/info"
+#-H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPT..."
+#-d "facilityUUID=331" \
+POST http://localhost:24765/kpsapi
+authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImNQYXJraW5nTG90VVVJRCI6IjMiLCJleHAiOjE2NDMxOTc5NDB9.FnJPdfQayDKjT8IKFYxO1uYefbMIRd9eHPgOd78bywTpSTQak_8ClI5vC5ubioF-QNraCdPSZjlepQnfokWMbg
+Content-Type: application/x-www-form-urlencoded
+kps-url: https://lpr-api-dev.kakaopark.net/facility/info
+ws-url: ws://192.168.0.118:8080/cable
+
+facilityUUID=331
+
+###
+
+
+
+### 4. 차량 사진 전송
+# POST /api/v1/hardware/facilities/images
+# curl -v -X POST "https://beta.tcp.parking.kakao.com/api/hardware/v1/facilities/images"
+#-F "images=@sample_image.jpg"
+#-F "external_id=9108328774545f68b107273b"
+#-F "angle=front"
+#-F "polygon_coordinate=[x1,y1][x2,y1][x2,y2][x1,y2]"
+POST http://localhost:24765/kpsapi
+#POST https://beta.tcp.parking.kakao.com/api/hardware/v1/facilities/images
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImNQYXJraW5nTG90VVVJRCI6IjMiLCJleHAiOjE2NDMyNTE3NzN9.9NREJjInWv7rqhLKx_4M9UzAuEkjgUzWqWfDiEJUeZ58DjNYOwahDxiSBw37g7ebbr6j5iHwDMgN0hZIxjLDIg
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+#kps-url: https://lpr-api-dev.kakaopark.net/api/hardware/v1/facilities/images
+kps-url: http://localhost:8081/facility/recognition
+#ws-url: ws://192.168.0.118:8080/cable
+ws-url: ws://localhost:8080/cable
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="sample_image.jpg"
+
+< sample_image.jpg
+
+--WebAppBoundary
+Content-Disposition: form-data; name="facilityUUID"
+
+331
+
+--WebAppBoundary
+Content-Disposition: form-data; name="carNumber"
+
+12가1111
+
+--WebAppBoundary--
+
+###

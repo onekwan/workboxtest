@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <title></title>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <script>
+          let isMobile = isMobileOrTablet();
+
+          if(!isMobile){
+              window.location.href= '/browsercheck.html';
+          }else{
+              const url = window.location.href;
+              const regex = /path=(.*)/;
+              const match = url.match(regex);
+              let heartbeat = null;
+              let timer = null;
+
+              if (match) {
+                  const extractedValue = match[1];
+                  let path = "googlechrome://"+extractedValue.replace('https://','');
+
+                  isMyApp();
+
+                  window.location.href = path;
+
+                  function isMyApp(){
+                      function clearTimers(){
+                          clearInterval(heartbeat);
+                          clearTimeout(timer);
+                      }
+                      function intervalHeartbeat(){
+                          if(document.webkitHidden || document.hidden){
+                              clearTimers();
+                          }
+                      }
+                      heartbeat = setInterval(intervalHeartbeat, 200);
+                      var deLay = 1000;
+                      timer = setTimeout(function() {
+                          window.location.href= '/browsercheck.html';
+
+                      }, deLay);
+                  }
+
+              } else {
+                  console.log("일치하는 값이 없습니다.");
+              }
+          }
+
+
+
+          function isMobileOrTablet() {
+              // navigator 객체의 user agent 문자열에서 모바일 및 테블릿 기기 특징을 확인
+              const userAgent = navigator.userAgent;
+
+              // 정규 표현식을 사용하여 모바일 및 테블릿 기기 여부를 판단
+              const mobileOrTablet = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+
+              return mobileOrTablet;
+          }
+      </script>
+</head>
+<body>
+
+</body>
+</html>
