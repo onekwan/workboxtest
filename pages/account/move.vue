@@ -1,4 +1,4 @@
-<script setup>
+<script>
 // layout null로 설정
 export default {
 	layout: "empty",
