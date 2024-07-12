@@ -6,6 +6,7 @@ export default {
 	 layout:"empty",
 	 middleware : 'guest',
 	 mounted() {
+		  tool_app.log('move mounted')
 
 	 }
 }
