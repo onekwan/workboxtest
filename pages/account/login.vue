@@ -139,7 +139,8 @@ export default {
 														  <p>cd 잘되나 테스트~~~</p>
 														  <ol>
 																<li class="text-left">배포 11:54 2024-07-12<span style="color:red">실패</span></li>
-																<li class="text-left">배포 11:58 변경된 html</li>
+																<li class="text-left">배포 11:58 변경된 html<span style="color:red">실패</span></li>
+																<li class="text-left">배포 12:02 urlPattern 변경</li>
 														  </ol>
                                         </div>
                                   </div>

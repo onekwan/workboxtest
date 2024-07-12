@@ -323,7 +323,7 @@ export default {
             // Workbox 설정
             runtimeCaching: [
                 {
-                    urlPattern: 'https://api.example.com/.*',
+                    urlPattern: 'https://main--zingy-lamington-546ec0.netlify.app/.*',
                     handler: 'StaleWhileRevalidate',
                     method: 'GET',
                     strategyOptions: {
