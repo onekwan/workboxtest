@@ -16,7 +16,7 @@ export default {
 	   <div>
 		  <h1>Move</h1>
 			 <nuxt-link to="/account/login">홈으로 이동</nuxt-link>
-			 별 빛이 내린다~22222222222222222
+			 별 빛이 내린다~33333333333333
 		</div>
 </template>
 

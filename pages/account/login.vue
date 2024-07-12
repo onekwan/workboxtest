@@ -45,7 +45,7 @@ export default {
 		  this.$store.dispatch("auth/logOut");
 	 },
 	 mounted() {
-
+			tool_app.log('main mounted')
 	 },
 	 computed: {
 		  notification() {
