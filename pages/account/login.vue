@@ -136,6 +136,7 @@ export default {
                                   <div class="col-lg-12">
                                         <div class="text-center">
                                               <h1 class="font-size-24 justify-content-center align-content-center" style="height: 50px">알바트로스 관리자 로그인</h1>
+														  <p>cd 잘되나 테스트~~~</p>
                                         </div>
                                   </div>
 <!--										  <div class="text-center mt-2">-->
