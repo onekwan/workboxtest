@@ -291,7 +291,8 @@ export default {
         "~/plugins/main/mainapi.js",
         "~/plugins/vue_globalFunction.js",
         "~/plugins/vue-datepicker.js",
-        "~/plugins/component-plugin.js"
+        "~/plugins/component-plugin.js",
+        '~/plugins/registerServiceWorker.js'
     ],
     /*
      ** Auto import components
@@ -308,9 +309,37 @@ export default {
     modules: [
         // Doc: https://bootstrap-vue.js.org
         "bootstrap-vue/nuxt",
+        '@nuxtjs/pwa'
         // Doc: https://github.com/nuxt/content
         //"@nuxt/content"
     ],
+    pwa: {
+        manifest: {
+            name: 'My PWA',
+            short_name: 'PWA',
+            lang: 'en',
+        },
+        workbox: {
+            // Workbox 설정
+            runtimeCaching: [
+                {
+                    urlPattern: 'https://api.example.com/.*',
+                    handler: 'StaleWhileRevalidate',
+                    method: 'GET',
+                    strategyOptions: {
+                        cacheName: 'api-cache',
+                        cacheExpiration: {
+                            maxEntries: 10,
+                            maxAgeSeconds: 300,
+                        },
+                    },
+                },
+            ],
+            // 새로운 배포가 있을 때 캐시를 무효화하는 설정
+            clientsClaim: true,
+            skipWaiting: true,
+        },
+    },
     /*
      ** Content module configuration
      ** See https://content.nuxtjs.org/configuration
