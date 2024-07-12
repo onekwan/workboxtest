@@ -355,9 +355,9 @@ export default {
         extractCSS: true,
         vendor: ['axios'],
         filenames: {
-            css: "[name].[hash].css",
-            app: "app.[hash].js",
-            chunk: "app_chunk[name].[hash].js"
+            css: "[name].css",
+            app: "app.js",
+            chunk: "app_chunk[name].js"
         },
         optimization: {
             splitChunks: {
