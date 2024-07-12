@@ -141,6 +141,7 @@ export default {
 																<li class="text-left">배포 11:54 2024-07-12<span style="color:red">실패</span></li>
 																<li class="text-left">배포 11:58 변경된 html<span style="color:red">실패</span></li>
 																<li class="text-left">배포 12:02 urlPattern 변경</li>
+																<li class="text-left">배포 12:05 urlPattern 변경 된 것 테스트</li>
 														  </ol>
                                         </div>
                                   </div>
