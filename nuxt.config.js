@@ -1,3 +1,5 @@
+const { version } = require('./package.json');
+
 export default {
     // loading: "~/components/loading.vue",
     /*
@@ -327,7 +329,7 @@ export default {
                     handler: 'StaleWhileRevalidate',
                     method: 'GET',
                     strategyOptions: {
-                        cacheName: 'api-cache',
+                        cacheName: `api-cache-${version}`,
                         cacheExpiration: {
                             maxEntries: 10,
                             maxAgeSeconds: 300,
