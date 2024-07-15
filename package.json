@@ -1,6 +1,6 @@
 {
   "name": "kpsmanagers",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": true,
   "scripts": {
     "nvm14.18.0": "nvm use 14.18.0",
