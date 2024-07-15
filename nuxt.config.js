@@ -1,4 +1,7 @@
+const fs = require('fs');
+const path = require('path');
 const { version } = require('./package.json');
+
 
 export default {
     // loading: "~/components/loading.vue",
