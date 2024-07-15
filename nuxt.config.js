@@ -310,11 +310,41 @@ export default {
      */
     modules: [
         // Doc: https://bootstrap-vue.js.org
-        "bootstrap-vue/nuxt"
+        "bootstrap-vue/nuxt",
+        '@nuxtjs/pwa'
         // Doc: https://github.com/nuxt/content
         //"@nuxt/content"
     ],
-
+    pwa: {
+        manifest: {
+            name: 'My PWA',
+            short_name: 'PWA',
+            lang: 'en',
+        },
+        workbox: {
+            // Workbox 설정
+            runtimeCaching: [
+                {
+                    urlPattern: 'https://main--zingy-lamington-546ec0.netlify.app/.*',
+                    handler: 'StaleWhileRevalidate',
+                    method: 'GET',
+                    strategyOptions: {
+                        cacheName: `api-cache-${version}`,
+                        cacheExpiration: {
+                            maxEntries: 10,
+                            maxAgeSeconds: 300,
+                        },
+                    },
+                },
+            ],
+            // 새로운 배포가 있을 때 캐시를 무효화하는 설정
+            clientsClaim: true,
+            skipWaiting: true,
+            importScripts: [
+                'custom-sw.js' // 커스터마이징된 Service Worker 파일
+            ]
+        },
+    },
     /*
      ** Content module configuration
      ** See https://content.nuxtjs.org/configuration
