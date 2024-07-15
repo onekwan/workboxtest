@@ -387,5 +387,67 @@ export default {
         measurement: process.env.VUE_APP_MEASUREMENTID,
         ENV_NAME: process.env.ENV_NAME,
         version : process.env.ENV_NAME ==='prod' ? process.env.npm_package_prod_version : process.env.npm_package_dev_version
+    },
+    hooks: {
+        generate: {
+            before() {
+                const customSwTemplate = `
+const CACHE_NAME = 'api-cache-${version}';
+
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request).then((networkResponse) => {
+        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+          return networkResponse;
+        }
+        const responseToCache = networkResponse.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, responseToCache).catch((error) => {
+            console.error('Failed to cache:', error);
+          });
+        });
+        return networkResponse;
+      });
+    }).catch((error) => {
+      console.error('Fetch failed:', error);
+      throw error;
+    })
+  );
+});
+
+// 업데이트 감지
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+        `;
+
+                fs.writeFileSync(path.resolve(__dirname, 'static/custom-sw.js'), customSwTemplate);
+            }
+        }
     }
 };
