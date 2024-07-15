@@ -154,6 +154,7 @@ export default {
 																<li class="text-left">배포 1.0.3 로그 추가</li>
 																<li class="text-left">배포 1.0.4 버전 변경후 로그 확인</li>
 																<li class="text-left">배포 1.0.4 페이지 이동 확인을 위한 배포</li>
+																<li class="text-left">2024-07-15</li>
 
 														  </ol>
                                         </div>
